@@ -7,11 +7,18 @@ public delegate void DialoguerCallback();
 
 public class Dialoguer{
 
+	public static bool ready{get; private set;}
+
 	#region Init
 	/// <summary>
 	/// Call this in order to initialize the Dialoguer system.
 	/// </summary>
 	public static void Initialize(){
+
+		// Only initialize once
+		if(ready)
+			return;
+
 		events = new DialoguerEvents();
 		// Initialize DialoguerDataManager
 		DialoguerDataManager.Initialize();
@@ -25,6 +32,8 @@ public class Dialoguer{
 		DialoguerEventManager.onWaitStart += events.handler_WaitStart;
 		DialoguerEventManager.onWaitComplete += events.handler_WaitComplete;
 		DialoguerEventManager.onMessageEvent += events.handler_MessageEvent;
+
+		ready = true;
 	}
 	#endregion
 

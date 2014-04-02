@@ -7,7 +7,7 @@ namespace DialoguerEditor{
 	public class DialogueEditorDialogueObject{
 		public int id;
 		public string name;
-		public int? startPage;
+		public int startPage = -1;
 		public Vector2 scrollPosition;
 		public List<DialogueEditorPhaseObject> phases;
 		public DialogueEditorVariablesContainer floats;
@@ -69,16 +69,16 @@ namespace DialoguerEditor{
 				DialogueEditorPhaseObject phase = phases[p];
 				
 				for(int o = 0; o<phase.outs.Count; o+=1){
-					if(phase.outs[o].HasValue && phase.outs[o] >/*=*/ phaseId){
+					if(phase.outs[o] >= 0 && phase.outs[o] >/*=*/ phaseId){
 						phase.outs[o] -= 1;
-					}else if(phase.outs[o].HasValue && phase.outs[o] == phaseId){
-						phase.outs[o] = null; 
+					}else if(phase.outs[o] >= 0 && phase.outs[o] == phaseId){
+						phase.outs[o] = -1; 
 					}
 					
 				}
 				
-				if(startPage.HasValue && startPage == phaseId){
-					startPage = null;
+				if(startPage >= 0 && startPage == phaseId){
+					startPage = -1;
 				}
 				
 				if(p > phaseId){

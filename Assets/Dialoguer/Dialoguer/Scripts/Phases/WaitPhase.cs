@@ -9,7 +9,7 @@ namespace DialoguerCore{
 		public readonly DialogueEditorWaitTypes type;
 		public readonly float duration;
 		
-		public WaitPhase(DialogueEditorWaitTypes type, float duration, List<int?> outs) : base(outs){
+		public WaitPhase(DialogueEditorWaitTypes type, float duration, List<int> outs) : base(outs){
 			this.type = type;
 			this.duration = duration;
 		}

@@ -7,7 +7,7 @@ namespace DialoguerCore{
 		
 		public readonly DialoguerTextData data;
 		
-		public TextPhase(string text, string themeName, bool newWindow, string name, string portrait, string metadata, string audio, float audioDelay, Rect rect, List<int?> outs, List<string> choices = null) : base(outs){
+		public TextPhase(string text, string themeName, bool newWindow, string name, string portrait, string metadata, string audio, float audioDelay, Rect rect, List<int> outs, List<string> choices = null) : base(outs){
 			data = new DialoguerTextData(text, themeName, newWindow, name, portrait, metadata, audio, audioDelay, rect, choices);
 		}
 		

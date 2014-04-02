@@ -21,7 +21,7 @@ namespace DialoguerCore{
 		private string _parsedString;
 		private string _checkString;
 		
-		public ConditionalPhase(VariableEditorScopes scope, VariableEditorTypes type, int variableId, VariableEditorGetEquation equation, string getValue, List<int?> outs) : base(outs){
+		public ConditionalPhase(VariableEditorScopes scope, VariableEditorTypes type, int variableId, VariableEditorGetEquation equation, string getValue, List<int> outs) : base(outs){
 			this.scope = scope;
 			this.type = type;
 			this.variableId = variableId;

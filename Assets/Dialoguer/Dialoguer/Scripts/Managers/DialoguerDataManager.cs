@@ -11,22 +11,8 @@ namespace DialoguerCore{
 		private static DialoguerData _data;
 		
 		public static void Initialize(){
-			
-			XmlSerializer deserializer = new XmlSerializer(typeof(DialogueEditorMasterObject));
-			XmlReader xmlReader = XmlReader.Create(new StringReader((Resources.Load("dialoguer_data") as TextAsset).text));
-			DialogueEditorMasterObject editorData = (DialogueEditorMasterObject)deserializer.Deserialize(xmlReader);
-			
+			DialogueEditorMasterObject editorData = (Resources.Load("dialoguer_data_object") as DialogueEditorMasterObjectWrapper).data;
 			_data = editorData.getDialoguerData();
-			
-			/*
-			Debug.Log (
-				"DialoguerDataManager Initialized\n\n"+
-				"Data contains:\n"+_data.dialogues.Count+" Dialogues\n"+
-				_data.globalVariables.booleans.Count+" Global Booleans"+
-				_data.globalVariables.floats.Count+" Global Floats\n"+
-				_data.globalVariables.strings.Count+" Global Strings\n"
-			);
-			*/
 		}
 		
 		#region Saving and Loading

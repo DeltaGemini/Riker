@@ -7,7 +7,7 @@ namespace DialoguerCore{
 		
 		public readonly List<string> choices;
 		
-		public BranchedTextPhase(string text, List<string> choices, string themeName, bool newWindow, string name, string portrait, string metadata, string audio, float audioDelay, Rect rect, List<int?> outs) : base(text, themeName, newWindow, name, portrait, metadata, audio, audioDelay, rect, outs, choices){
+		public BranchedTextPhase(string text, List<string> choices, string themeName, bool newWindow, string name, string portrait, string metadata, string audio, float audioDelay, Rect rect, List<int> outs) : base(text, themeName, newWindow, name, portrait, metadata, audio, audioDelay, rect, outs, choices){
 			this.choices = choices;
 		}
 		

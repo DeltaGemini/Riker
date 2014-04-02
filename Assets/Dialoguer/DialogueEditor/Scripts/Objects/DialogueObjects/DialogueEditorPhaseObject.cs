@@ -13,7 +13,7 @@ namespace DialoguerEditor{
 		public Vector2 position;
 		
 		// All Phases Vars
-		public List<int?> outs;
+		public List<int> outs;
 		public bool advanced;
 		public string metadata;
 		
@@ -56,14 +56,14 @@ namespace DialoguerEditor{
 			
 			text = string.Empty;
 			
-			outs = new List<int?>();
+			outs = new List<int>();
 			choices = new List<string>();
 			
 			waitType = DialogueEditorWaitTypes.Seconds;
 		}
 		
 		public void addNewOut(){
-			outs.Add(null);
+			outs.Add(-1);
 		}
 		
 		public void removeOut(){
@@ -250,8 +250,8 @@ namespace DialoguerEditor{
 			phase.rect = new Rect(0,0,0,0);
 			phase.newWindow = false;
 			
-			phase.outs = new List<int?>();
-			phase.outs.Add(null);
+			phase.outs = new List<int>();
+			phase.outs.Add(-1);
 			
 			return phase;
 		}
@@ -275,9 +275,9 @@ namespace DialoguerEditor{
 			phase.rect = new Rect(0,0,0,0);
 			phase.newWindow = false;
 			
-			phase.outs = new List<int?>();
-			phase.outs.Add(null);
-			phase.outs.Add(null);
+			phase.outs = new List<int>();
+			phase.outs.Add(-1);
+			phase.outs.Add(-1); 
 			
 			phase.choices = new List<string>();
 			phase.choices.Add(string.Empty);
@@ -316,8 +316,8 @@ namespace DialoguerEditor{
 			phase.advanced = false;
 			phase.metadata = string.Empty;
 			
-			phase.outs = new List<int?>();
-			phase.outs.Add(null);
+			phase.outs = new List<int>();
+			phase.outs.Add(-1);
 			
 			return phase;
 		}
@@ -334,8 +334,8 @@ namespace DialoguerEditor{
 			phase.advanced = false;
 			phase.metadata = string.Empty;
 			
-			phase.outs = new List<int?>();
-			phase.outs.Add(null);
+			phase.outs = new List<int>();
+			phase.outs.Add(-1);
 			
 			phase.variableScope = VariableEditorScopes.Local;
 			phase.variableType = VariableEditorTypes.Boolean;
@@ -359,9 +359,9 @@ namespace DialoguerEditor{
 			phase.advanced = false;
 			phase.metadata = string.Empty;
 			
-			phase.outs = new List<int?>();
-			phase.outs.Add(null);
-			phase.outs.Add(null);
+			phase.outs = new List<int>();
+			phase.outs.Add(-1);
+			phase.outs.Add(-1);
 			
 			return phase;
 		}
@@ -378,8 +378,8 @@ namespace DialoguerEditor{
 			phase.advanced = false;
 			phase.metadata = string.Empty;
 			
-			phase.outs = new List<int?>();
-			phase.outs.Add(null);
+			phase.outs = new List<int>();
+			phase.outs.Add(-1);
 			
 			phase.messageName = string.Empty;
 			

@@ -11,8 +11,9 @@ public class VariableEditorWindow : EditorWindow {
 	private VariableEditorTypes __type;
 	private Vector2 __scrollPosition;
 
-	[MenuItem ("Dialoguer/Window/Variables", false, 0)]
-	[MenuItem ("Window/Dialoguer/Variables", false, 0)]
+	//[MenuItem ("Dialoguer/Window/Variables", false, 0)]
+	[MenuItem ("Tools/Dialoguer/Variable Editor", false, 1)]
+	[MenuItem ("Window/Dialoguer/Variable Editor", false, 1)]
 	static void Init () {
 		VariableEditorWindow window = (VariableEditorWindow)EditorWindow.GetWindow(typeof(VariableEditorWindow));
 		window.title = "Variable Editor";

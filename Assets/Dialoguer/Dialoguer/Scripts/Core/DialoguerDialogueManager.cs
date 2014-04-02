@@ -32,7 +32,8 @@ namespace DialoguerCore{
 		
 		public static void continueDialogue(int outId){
 			// Continue Dialogues
-			currentPhase.Continue(outId);
+			if(currentPhase != null)
+				currentPhase.Continue(outId);
 		}
 		
 		public static void endDialogue(){

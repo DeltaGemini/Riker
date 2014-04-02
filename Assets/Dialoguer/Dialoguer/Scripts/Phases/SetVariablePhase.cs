@@ -16,7 +16,7 @@ namespace DialoguerCore{
 		private float _setFloat;
 		private string _setString;
 		
-		public SetVariablePhase(VariableEditorScopes scope, VariableEditorTypes type, int variableId, VariableEditorSetEquation equation, string setValue, List<int?> outs) : base(outs){
+		public SetVariablePhase(VariableEditorScopes scope, VariableEditorTypes type, int variableId, VariableEditorSetEquation equation, string setValue, List<int> outs) : base(outs){
 			this.scope = scope;
 			this.type = type;
 			this.variableId = variableId;

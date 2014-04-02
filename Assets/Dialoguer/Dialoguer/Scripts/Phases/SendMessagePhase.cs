@@ -8,7 +8,7 @@ namespace DialoguerCore{
 		public readonly string message;
 		public readonly string metadata;
 		
-		public SendMessagePhase(string message, string metadata, List<int?> outs) : base(outs){
+		public SendMessagePhase(string message, string metadata, List<int> outs) : base(outs){
 			this.message = message;
 			this.metadata = metadata;
 		}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using DialoguerCore;
 using DialoguerEditor;
 
-public class DialoguerTextData{
+public struct DialoguerTextData{
 
 	/// <summary>
 	/// The raw, unformatted text
@@ -61,9 +61,13 @@ public class DialoguerTextData{
 	/// </summary>
 	public string text{
 		get{
-			return DialoguerUtils.insertTextPhaseStringVariables(rawText);
+			if(_cachedText == null){
+				_cachedText = DialoguerUtils.insertTextPhaseStringVariables(rawText);
+			}
+			return _cachedText;
 		}
 	}
+	private string _cachedText;
 
 	/// <summary>
 	/// Returns whether or not the rect field was used for this node
@@ -96,7 +100,10 @@ public class DialoguerTextData{
 		if(choices != null){
 			string[] choicesClone = choices.ToArray();
 			this.choices = choicesClone.Clone() as string[];
+		}else{
+			this.choices = null;
 		}
+		_cachedText = null;
 	}
 
 	

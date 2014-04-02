@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace DialoguerCore{
 	public abstract class AbstractDialoguePhase{
 		
-		public readonly int?[] outs;
+		public readonly int[] outs;
 		
 		protected int nextPhaseId;
 		protected DialoguerVariables _localVariables;
@@ -38,10 +38,10 @@ namespace DialoguerCore{
 			}
 		}
 			
-		public AbstractDialoguePhase(List<int?> outs){
+		public AbstractDialoguePhase(List<int> outs){
 			if(outs != null){
-				int?[] outsClone = outs.ToArray();
-				this.outs = outsClone.Clone() as int?[];
+				int[] outsClone = outs.ToArray();
+				this.outs = outsClone.Clone() as int[];
 			}
 		}
 		
@@ -54,8 +54,8 @@ namespace DialoguerCore{
 		virtual public void Continue(int outId){
 			int nextId = 0;
 			
-			if(outs != null && outs[outId].HasValue){
-				nextId = outs[outId].Value;
+			if(outs != null && outs[outId] >= 0){
+				nextId = outs[outId];
 			}else{
 				Debug.LogWarning("Invalid Out Id");
 			}
@@ -78,7 +78,7 @@ namespace DialoguerCore{
 		}
 		
 		virtual protected void Reset(){
-			nextPhaseId = (outs != null && outs[0].HasValue) ? outs[0].Value : 0;
+			nextPhaseId = (outs != null && outs[0] >= 0) ? outs[0] : 0;
 			_localVariables = null;
 		}
 		

@@ -6,7 +6,7 @@ using DialoguerCore;
 namespace DialoguerEditor{
 	[System.Serializable]
 	public class DialogueEditorMasterObject{
-		
+
 		public int count{get{return dialogues.Count;}}
 		
 		private int __currentDialogueId;
@@ -17,6 +17,8 @@ namespace DialoguerEditor{
 				__currentDialogueId = Mathf.Clamp(value, 0, count - 1);
 			}
 		}
+
+		public bool generateEnum = true;
 		
 		public List<DialogueEditorDialogueObject> dialogues;
 		
@@ -60,7 +62,12 @@ namespace DialoguerEditor{
 			currentDialogueId = currentDialogueId;
 		}
 		
-		public string[] getThemeNames(bool includeId = false){
+		public string[] getThemeNames(){
+			return getThemeNames(false);
+		}
+		
+		public string[] getThemeNames(bool includeId)
+		{
 			string[] themeNames = new string[themes.themes.Count];
 			for(int i = 0; i<themes.themes.Count; i+=1){
 				themeNames[i] = string.Empty;
@@ -178,7 +185,7 @@ namespace DialoguerEditor{
 				DialoguerVariables localVariables = new DialoguerVariables(localBooleans, localFloats, localStrings);
 				#endregion
 				
-				DialoguerDialogue newDialogue = new DialoguerDialogue(dialogue.name, dialogue.startPage.Value, localVariables, newPhases);
+				DialoguerDialogue newDialogue = new DialoguerDialogue(dialogue.name, dialogue.startPage, localVariables, newPhases);
 				//Debug.Log(newDialogue.ToString());
 				newDialogues.Add(newDialogue);
 			}
