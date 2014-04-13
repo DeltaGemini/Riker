@@ -1169,9 +1169,10 @@ public class UILabel : UIWidget
 				int h = height;
 
 				Overflow over = mOverflow;
-				mOverflow = Overflow.ShrinkContent;
-				mWidth = 100000;
+				if (over != Overflow.ResizeHeight) mWidth = 100000;
 				mHeight = 100000;
+
+				mOverflow = Overflow.ShrinkContent;
 				ProcessText(false, true);
 				mOverflow = over;
 
@@ -1283,8 +1284,13 @@ public class UILabel : UIWidget
 
 			if (linkStart != linkEnd)
 			{
-				string word = mText.Substring(linkStart, linkEnd - linkStart);
-				return NGUIText.StripSymbols(word);
+				int len = linkEnd - linkStart;
+
+				if (len > 0)
+				{
+					string word = mText.Substring(linkStart, len);
+					return NGUIText.StripSymbols(word);
+				}
 			}
 		}
 		return null;

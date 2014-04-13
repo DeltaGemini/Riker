@@ -12,7 +12,7 @@ public class DialoguerExampleStart : MonoBehaviour {
 		if(GUI.Button (new Rect(10,10,100,30), "Start!")){
 
 			// The preferred way to start dialogues is with the DialoguerDialogues enum
-			Dialoguer.StartDialogue(DialoguerDialogues.My_First_Dialogue_Tree);
+			Dialoguer.StartDialogue(0);
 			// By default, this enum is automatically updated when you save your dialogues.
 			// You can turn this off in the Dialoguer preferences menu.
 
