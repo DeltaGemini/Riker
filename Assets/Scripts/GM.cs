@@ -7,8 +7,12 @@ public class GM : MonoBehaviour {
 	DialoguerEvents Dialoguer.events;
 
 	public Camera gameCam;
-	public GameObject bckImage;
-
+	public GameObject bckImage;	
+	
+	public AudioSource audioText;
+	public AudioSource audioTextEnd;
+	public AudioSource audioGood;
+	public AudioSource audioBad;
 	float vWidth;
 	float vHeight;
 
@@ -19,7 +23,7 @@ public class GM : MonoBehaviour {
 	private bool _showing = false;
 	private bool _windowShowing = false;
 	private bool _selectionClicked = false;
-	
+
 	//dialoguer text information
 	private string _windowText = string.Empty;
 	private string[] _choices;
@@ -36,7 +40,7 @@ public class GM : MonoBehaviour {
 		vWidth = Screen.width;
 		vHeight = Screen.height;
 		
-		bHeight = vHeight * 0.1f;
+		bHeight = vHeight * 0.12f;
 	}
 	
 	void Start () {
@@ -59,18 +63,19 @@ public class GM : MonoBehaviour {
 		Rect dialogueBackBoxRect = new Rect(dialogueBoxRect.x, dialogueBoxRect.y, dialogueBoxRect.width, dialogueBoxRect.height - (bHeight*_choices.Length));
 		GUI.Box(dialogueBackBoxRect, string.Empty);
 		GUI.color = GUI.contentColor;
-		GUI.Label(new Rect(dialogueBackBoxRect.x + 10, dialogueBackBoxRect.y + 10, dialogueBackBoxRect.width - 20, dialogueBackBoxRect.height - 20), _windowText);
-		
+		GUI.Label(new Rect(dialogueBackBoxRect.x, dialogueBackBoxRect.y + 10, dialogueBackBoxRect.width, dialogueBackBoxRect.height - 20), _windowText);
+
 		if(_selectionClicked) return;
 		
 		for(int i = 0; i<_choices.Length; i+=1){
 			Rect buttonRect = new Rect(dialogueBoxRect.x, dialogueBoxRect.yMax - (bHeight*(_choices.Length - i)) + 5 , dialogueBoxRect.width, bHeight-5);
+
 			if(GUI.Button(buttonRect, _choices[i])){
 				_selectionClicked = true;
 				Dialoguer.ContinueDialogue(i);
 			}
 		}
-		
+
 		GUI.color = GUI.contentColor;
 	}
 
@@ -88,7 +93,6 @@ public class GM : MonoBehaviour {
 		bckImage.guiTexture.pixelInset = new Rect ((Screen.width - ratioWidth)/2, 0, ratioWidth, Screen.height);
 		//bckImage.guiTexture.pixelInset = new Rect ((Screen.width - ratioWidth)/2, 0, ratioWidth, vHeight);
 		*/
-		Debug.Log (bckImage.transform.GetComponent<UITexture>().mainTexture);
 	}
 
 	void SceneChange(string message, string metadata) {

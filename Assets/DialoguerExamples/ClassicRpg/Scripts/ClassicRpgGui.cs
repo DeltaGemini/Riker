@@ -14,7 +14,16 @@ public class ClassicRpgGui : MonoBehaviour {
 	
 	private bool _dialogue;
 	private bool _ending;
-	private bool _showDialogueBox;
+	private bool _showDialogueBox;	
+	
+	private bool _showing = false;
+	private bool _windowShowing = false;
+	private bool _selectionClicked = false;
+	
+	//dialoguer text information
+	private string _windowText = string.Empty;
+	private string[] _choices;
+	private Color _guiColor;
 	
 	// DIALOGUER VARS
 	private bool _usingPositionRect = false;
@@ -153,7 +162,6 @@ public class ClassicRpgGui : MonoBehaviour {
 	
 	#region Old School RPG Dialogue GUI
 	void OnGUI(){
-		
 		if(!_showDialogueBox) return;
 		
 		// Set GUI Skin
@@ -164,7 +172,7 @@ public class ClassicRpgGui : MonoBehaviour {
 		float rectY = (!_usingPositionRect) ? Screen.height - 100 : _positionRect.y;
 		float rectWidth = (!_usingPositionRect) ? 512 : _positionRect.width;
 		float rectHeight = (!_usingPositionRect) ? 190 : _positionRect.height;
-		
+
 		Rect dialogueBoxRect = centerRect(new Rect(rectX, rectY, rectWidth*_windowTweenValue, rectHeight*_windowTweenValue));
 		
 		// Clamp values so they can be no smaller than 32px X 32px
@@ -321,6 +329,7 @@ public class ClassicRpgGui : MonoBehaviour {
 	
 	#region Utils
 	// Centers a Rect on the input rect's X and Y
+
 	private Rect centerRect(Rect rect){
 		return new Rect(rect.x - (rect.width*0.5f), rect.y - (rect.height*0.5f), rect.width, rect.height);
 	}
@@ -328,7 +337,7 @@ public class ClassicRpgGui : MonoBehaviour {
 	private void calculateText(){
 		if(_windowTargetText == string.Empty || _windowCurrentText == _windowTargetText) return;
 		
-		int frameSkip = 2;
+		int frameSkip = 1;
 		
 		if(_textFrames<frameSkip){
 			_textFrames += 1;
@@ -337,7 +346,7 @@ public class ClassicRpgGui : MonoBehaviour {
 			_textFrames = 0;
 		}
 		
-		int charsPerInterval = 1;
+		int charsPerInterval = 10;
 		if(_windowCurrentText != _windowTargetText){
 			for(int i = 0; i<charsPerInterval; i+=1){
 				if(_windowTargetText.Length <= _windowCurrentText.Length) break;
