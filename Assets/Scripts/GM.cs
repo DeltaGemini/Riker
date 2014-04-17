@@ -46,7 +46,7 @@ public class GM : MonoBehaviour {
 	void Start () {
 		addDialoguerEvents();
 		
-		Dialoguer.StartDialogue(DialoguerDialogues.Narrator);
+		Dialoguer.StartDialogue(0);
 	}
 
 
@@ -96,9 +96,12 @@ public class GM : MonoBehaviour {
 	}
 
 	void SceneChange(string message, string metadata) {
-		Debug.Log (message + ", " + metadata);
+		//Debug.Log (message + ", " + metadata);
 		//bckImage.texture = Resources.Load(message) as Texture;
 		bckImage.transform.GetComponent<UITexture>().mainTexture=Resources.Load(message) as Texture;
+		Debug.Log (message);
+		int sceneNumber = System.Convert.ToInt32 (message);
+		Dialoguer.StartDialogue (sceneNumber);
 	}
 
 	private void onStartedHandler(){
