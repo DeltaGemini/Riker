@@ -147,7 +147,8 @@ public class GM : MonoBehaviour {
 			break;
 		}
 
-		Debug.Log (data.audio);
+		audioText.Stop();
+
 		newVoiceOver = Resources.Load (data.audio) as AudioClip;
 		//voiceOvers[sceneNumber]
 		audioText.PlayOneShot (newVoiceOver);
