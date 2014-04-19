@@ -7,12 +7,16 @@ public class GM : MonoBehaviour {
 	DialoguerEvents Dialoguer.events;
 
 	public Camera gameCam;
-	public GameObject bckImage;	
+	public GameObject bckImage;
+
+	int sceneNumber;
 	
 	public AudioSource audioText;
 	public AudioSource audioTextEnd;
 	public AudioSource audioGood;
 	public AudioSource audioBad;
+	AudioClip newVoiceOver;
+
 	float vWidth;
 	float vHeight;
 
@@ -32,6 +36,9 @@ public class GM : MonoBehaviour {
 	// Occurs when Dialoguer sends a message with the SendMessage node.
 	event MessageEventHandler onMessageEvent;
 	delegate void MessageEventHandler(string message, string metadata);
+
+	event TextPhaseHandler onTextPhase;
+	delegate void TextPhaseHandler(DialoguerTextData data);
 
 	void Awake(){
 		// You must initialize Dialoguer before using it!
@@ -99,8 +106,7 @@ public class GM : MonoBehaviour {
 		//Debug.Log (message + ", " + metadata);
 		//bckImage.texture = Resources.Load(message) as Texture;
 		bckImage.transform.GetComponent<UITexture>().mainTexture=Resources.Load(message) as Texture;
-		Debug.Log (message);
-		int sceneNumber = System.Convert.ToInt32 (message);
+		sceneNumber = System.Convert.ToInt32 (message);
 		Dialoguer.StartDialogue (sceneNumber);
 	}
 
@@ -140,6 +146,11 @@ public class GM : MonoBehaviour {
 			_guiColor = GUI.contentColor;
 			break;
 		}
+
+		Debug.Log (data.audio);
+		newVoiceOver = Resources.Load (data.audio) as AudioClip;
+		//voiceOvers[sceneNumber]
+		audioText.PlayOneShot (newVoiceOver);
 		
 		_windowShowing = true;
 		_selectionClicked = false;
