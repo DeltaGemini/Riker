@@ -123,7 +123,7 @@ public class GM : MonoBehaviour {
 		_windowText = data.text;
 		
 		if(data.windowType == DialoguerTextPhaseType.Text){
-			_choices = new string[1] {"Continue"};
+			_choices = new string[1] {"Weiter"};
 		}else{
 			_choices = data.choices;
 		}

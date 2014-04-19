@@ -22,7 +22,7 @@ public class DialoguerGui : MonoBehaviour {
 		GUI.Box (new Rect(10,10,200,150), _text);
 
 		if (_choices == null && _choices.Length <= 0) {
-			if (GUI.Button (new Rect (10, 220, 200, 30), "continue")) {
+			if (GUI.Button (new Rect (10, 220, 200, 30), "Weiter")) {
 					Dialoguer.ContinueDialogue ();
 			}
 		} else {
