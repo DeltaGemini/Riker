@@ -111,8 +111,22 @@ public class GM : MonoBehaviour {
 	void SceneChange(string message, string metadata) {
 		//Debug.Log (message + ", " + metadata);
 		//bckImage.texture = Resources.Load(message) as Texture;
-		bckImage.transform.GetComponent<UITexture>().mainTexture=Resources.Load(message) as Texture;
+		//bckImage.transform.GetComponent<UITexture>().mainTexture=Resources.Load(message) as Texture;
 		sceneNumber = System.Convert.ToInt32 (message);
+		string sceneNumberEnglish = System.Convert.ToString(sceneNumber-10);
+		string zero = System.Convert.ToString(0);
+		//string zero = "";
+		//tmp = ToString(sceneNumber-10);
+		//zero = ToString(0);
+		if (sceneNumber < 11){
+			bckImage.transform.GetComponent<UITexture>().mainTexture=Resources.Load(message) as Texture;
+		}
+		else if (sceneNumber < 21) {
+			bckImage.transform.GetComponent<UITexture>().mainTexture=Resources.Load(sceneNumberEnglish) as Texture;
+		}
+		else {
+			bckImage.transform.GetComponent<UITexture>().mainTexture=Resources.Load(zero) as Texture;
+		}
 		Dialoguer.StartDialogue (sceneNumber);
 	}
 	private void onStartedHandler(){
@@ -134,20 +148,18 @@ public class GM : MonoBehaviour {
 		_windowText = data.text;
 		
 		if(data.windowType == DialoguerTextPhaseType.Text){
-			_choices = new string[1] {"Weiter"};
-			// wenn es eine der letzten 4 szenen ist, schreibe: "Ende" statt "Weiter"
-			Debug.Log (sceneNumber);
-			if (sceneNumber > 10) {
-				_choices = new string[1] {"Nochmal spielen?"};
-				//bgmusic = gameCam.
-				//bgmusic.CrossFade();
-			}
-			else if (sceneNumber == 0)
-				_choices = new string[1] {"Los geht's!"};
-		}else{
+			//Debug.Log (sceneNumber);
+			if (sceneNumber == 0)
+				_choices = new string[1] {"Start!"};
+			else if (sceneNumber < 11)
+				_choices = new string[1] {"Weiter"};
+			else if (sceneNumber < 21)
+				_choices = new string[1] {"Continue"};
+			else if (sceneNumber == 21)
+				_choices = new string[1] {"Menu"};
+
+		}else
 			_choices = data.choices;
-		}
-		
 		// Set the color
 		switch(data.theme){
 		case "bad":
