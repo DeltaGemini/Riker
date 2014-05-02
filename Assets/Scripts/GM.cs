@@ -16,6 +16,7 @@ public class GM : MonoBehaviour {
 	public AudioSource audioGood;
 	public AudioSource audioBad;
 	AudioClip newVoiceOver;
+	public AudioSource bgmusic;
 
 	float vWidth;
 	float vHeight;
@@ -130,6 +131,15 @@ public class GM : MonoBehaviour {
 		
 		if(data.windowType == DialoguerTextPhaseType.Text){
 			_choices = new string[1] {"Weiter"};
+			// wenn es eine der letzten 4 szenen ist, schreibe: "Ende" statt "Weiter"
+			Debug.Log (sceneNumber);
+			if (sceneNumber > 6) {
+				_choices = new string[1] {"Nochmal spielen?"};
+				//bgmusic = gameCam.
+				//bgmusic.CrossFade();
+			}
+			else if (sceneNumber == 0)
+				_choices = new string[1] {"Los geht's!"};
 		}else{
 			_choices = data.choices;
 		}
