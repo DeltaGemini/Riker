@@ -12,4 +12,5 @@ public enum DialoguerDialogues{
 	Scene08 = 8,
 	Scene09 = 9,
 	Scene10 = 10,
+	Scene11 = 11,
 }

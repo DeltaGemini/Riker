@@ -11,3 +11,7 @@
 /*.userprefs
 /*.pidb
 /*.booproj
+
+Assets/DialoguerOutput/Resources/dialoguer_data_object.asset
+
+Assets/Scenes/Test02.unity

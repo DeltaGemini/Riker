@@ -23,6 +23,11 @@ public class GM : MonoBehaviour {
 
 	float bHeight;
 
+	float startLevel = 1;
+	float endLevel = 0;
+
+	public float duration = 0;
+
 	public GUISkin font;
 
 	private bool _showing = false;
@@ -110,7 +115,6 @@ public class GM : MonoBehaviour {
 		sceneNumber = System.Convert.ToInt32 (message);
 		Dialoguer.StartDialogue (sceneNumber);
 	}
-
 	private void onStartedHandler(){
 		_showing = true;
 	}
@@ -133,7 +137,7 @@ public class GM : MonoBehaviour {
 			_choices = new string[1] {"Weiter"};
 			// wenn es eine der letzten 4 szenen ist, schreibe: "Ende" statt "Weiter"
 			Debug.Log (sceneNumber);
-			if (sceneNumber > 6) {
+			if (sceneNumber > 10) {
 				_choices = new string[1] {"Nochmal spielen?"};
 				//bgmusic = gameCam.
 				//bgmusic.CrossFade();
